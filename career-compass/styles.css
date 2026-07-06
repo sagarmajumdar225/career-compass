@@ -1,0 +1,288 @@
+/* Basic Reset and Variables */
+:root {
+    --primary-color: #e53935; /* Strong red */
+    --secondary-color: #00bcd4; /* Cyan accent */
+    --background-dark: #1e1e1e;
+    --text-light: #f4f4f4;
+    --card-bg: #2b2b2b;
+    --border-radius: 8px;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header & Branding */
+header {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.tagline {
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/* Main Container & Screens */
+#app-container {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 800px;
+    min-height: 400px;
+    display: flex;
+}
+
+.screen {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+h1 { font-size: 2.5em; margin-bottom: 15px; }
+h2 { font-size: 1.8em; color: var(--secondary-color); margin-bottom: 20px; }
+p { margin-bottom: 20px; line-height: 1.6; }
+
+/* Buttons */
+.cta-button, .nav-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    font-weight: 600;
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.cta-button:hover {
+    background-color: #c62828;
+    transform: translateY(-1px);
+}
+
+.nav-button {
+    background: none;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    margin-right: 10px;
+}
+
+.nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.navigation-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Quiz Styling */
+.step-indicator {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.question-card {
+    background: var(--background-dark);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.question-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.options-group label {
+    display: block;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #3a3a3a;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    font-size: 0.95em;
+    outline: none; /* Removed default browser outline */
+}
+
+.options-group label:hover,
+.options-group label:focus { /* Added focus style for keyboard navigation */
+    background-color: #383838;
+    border-color: var(--secondary-color);
+}
+
+.options-group input[type="radio"]:checked + label {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.options-group input[type="radio"] {
+    display: none;
+}
+
+
+/* --- RESULTS STYLING START --- */
+.results-title {
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+#recommendations-list {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increased gap */
+}
+
+.recommendation-item {
+    background: var(--background-dark);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    text-align: left;
+    position: relative;
+    border-left: 5px solid var(--secondary-color);
+    transition: transform 0.3s;
+    overflow: hidden; /* Ensures ranking doesn't show over rounded corners */
+}
+
+.recommendation-item:nth-child(1) {
+    border-left-color: var(--primary-color); 
+    box-shadow: 0 0 15px rgba(229, 57, 53, 0.4);
+}
+
+.recommendation-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Ranking Badge (Styled as a large, subtle number in the corner) */
+.ranking {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 5em; /* Made much larger */
+    font-weight: 700;
+    color: var(--secondary-color);
+    opacity: 0.08; /* Very subtle */
+    line-height: 1;
+}
+.recommendation-item:nth-child(1) .ranking {
+    color: var(--primary-color);
+    opacity: 0.15;
+}
+
+.career-name {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-light);
+}
+
+/* Confidence Score (Made more prominent) */
+.match-score {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--secondary-color); 
+    margin: 10px 0 15px 0; /* Adjusted margin */
+    padding: 5px 0;
+    border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+}
+
+.career-description {
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-bottom: 15px;
+}
+
+.career-details {
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Rationale Text */
+.rationale-text {
+    font-size: 0.95em;
+    font-style: italic;
+    padding: 10px;
+    background-color: #383838;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.career-details p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* Hidden elements for cleaner output */
+.score-debug {
+    display: none !important; /* Hiding the distracting score debug */
+}
+/* --- RESULTS STYLING END --- */
+
+/* AI Branding Footer */
+.ai-branding {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
+.ai-branding p {
+    margin: 0;
+}
+
+.ai-link {
+    color: var(--secondary-color);
+    font-weight: 600;
+}

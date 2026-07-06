@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass - Find Your Path</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🧭 **Career Compass**</div>
+        <div class="tagline">Stop guessing, start growing.</div>
+    </header>
+
+    <main id="app-container">
+        
+        <section id="welcome-screen" class="screen active">
+            <h1>Find Your Future Path</h1>
+            <p>Answer 15 focused questions to discover the career that truly matches your passion and skills.</p>
+            <button id="start-quiz-btn" class="cta-button">Start Your Journey →</button>
+        </section>
+
+        <section id="quiz-screen" class="screen" data-step="1">
+            <h2 id="question-title">Let's Discover Your Interests</h2>
+            <p class="step-indicator">Question <span id="current-q-num">1</span> of 15</p>
+            
+            <div id="quiz-content">
+                </div>
+
+            <div class="navigation-buttons">
+                <button id="prev-btn" class="nav-button" disabled>← Back</button>
+                <button id="next-btn" class="cta-button">Next →</button>
+                <button id="submit-btn" class="cta-button hidden">Show Results</button>
+            </div>
+        </section>
+
+        <section id="results-screen" class="screen">
+            <h2 class="results-title">✅ Your Top Career Recommendations</h2>
+            <p class="footer-note">Based on your answers, here are the top 3 fields where you are most likely to thrive.</p>
+            <div id="recommendations-list">
+                </div>
+            
+            <button class="cta-button" onclick="window.location.reload();">Start Over</button>
+        </section>
+
+    </main>
+    
+    <div class="ai-branding">
+        🤖 
+        <p>Powered by <span class="ai-link">Career Compass</span> logic</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
